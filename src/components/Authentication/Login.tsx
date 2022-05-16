@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Wrapper,
     Head,
@@ -10,9 +10,23 @@ import {
     Button
 } from './LoginStyles'
 import { CgProfile } from "react-icons/cg";
+import { type } from "os";
+
+
+interface Form {
+    type: String
+    size: Number
+    value: String
+    stroke: String
+}; 
 
 export default function Login () {
 
+    const [username, setUsername] = useState('');
+    const handleSubmit = {
+        
+    }
+    
     return(
         <Wrapper>
             <Head>
@@ -26,11 +40,17 @@ export default function Login () {
                    </Flex>
                     <Input
                         type='username'
-                        name="username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                         required
                     />
                 </Form>
-                <Button type="submit">Login</Button>
+                <Button 
+                    type="submit"
+                    // onSubmit={handleSubmit}
+                >
+                    Login
+                </Button>
             </Body>
         </Wrapper>
     )
