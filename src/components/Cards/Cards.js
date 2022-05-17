@@ -10,9 +10,17 @@ import {
  } from "./CardsStyles"
 
 export default function Cards() {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    }
+
   return (
     <Wrapper>
-        <Button>Logout</Button>
+        <Button
+            onSubmit={handleSubmit}
+        >
+            Logout
+        </Button>
         <CardWrapper>
             <Card>
                 <Box>

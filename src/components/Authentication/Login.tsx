@@ -10,7 +10,7 @@ import {
     Button
 } from './LoginStyles'
 import { CgProfile } from "react-icons/cg";
-import { type } from "os";
+import {connect} from 'react-redux';
 
 
 interface Form {
@@ -20,11 +20,16 @@ interface Form {
     stroke: String
 }; 
 
-export default function Login () {
+const Login = () => {
 
     const [username, setUsername] = useState('');
-    const handleSubmit = {
-        
+    
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
+    }
+
+    const handleClick = (e: any) => {
+        setUsername(e.target.value)   
     }
     
     return(
@@ -41,13 +46,13 @@ export default function Login () {
                     <Input
                         type='username'
                         value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        onChange={handleClick}
                         required
                     />
                 </Form>
                 <Button 
                     type="submit"
-                    // onSubmit={handleSubmit}
+                    onSubmit={handleSubmit}
                 >
                     Login
                 </Button>
@@ -56,3 +61,9 @@ export default function Login () {
     )
 }
 
+function mapStateToProps (state: any) {
+    return {user: state.user};
+}
+
+
+export default connect(mapStateToProps) (Login);
